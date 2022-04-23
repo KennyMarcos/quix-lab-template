@@ -1,0 +1,59 @@
+<!--**********************************
+            Sidebar start
+        ***********************************-->
+<div class="nk-sidebar">
+  <div class="nk-nav-scroll">
+    <ul class="metismenu" id="menu">
+      <ng-container *ngFor="let menu of menuList">
+        <li *ngIf="!menu.subMenu">
+          <a class="#" [routerLink]="[menu.route]" routerLinkActive="active" aria-expanded="false">
+            <i [class]="menu.icon" *ngIf="menu.icon"></i>
+
+            <span class="nav-text">
+              {{menu.title}}</span>
+          </a>
+
+        </li>
+
+        <li class="mega-menu mega-menu-sm" *ngIf="menu.subMenu" (click)="collapse.toggle()">
+
+          <a class="has-arrow"  routerLinkActive="active" aria-expanded="false">
+            <i [class]="menu.icon" *ngIf="menu.icon"></i>
+
+            <span class="nav-text">
+              {{menu.title}}</span>
+          </a>
+          <ul aria-expanded="false" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapse">
+            <li *ngFor="let submenu of menu.subMenu">
+              <a [routerLink]="[submenu.route]" routerLinkActive="active">{{submenu.title}}</a>
+            </li>
+
+          </ul>
+        </li>
+
+        <!-- <ng-content select="groupMenu"></ng-content> -->
+      </ng-container>
+
+    </ul>
+  </div>
+</div>
+<!--**********************************
+          Sidebar end
+      ***********************************-->
+<!-- <ng-template #groupMenu>
+  <li *ngIf="menu.subMenu" (click)="collapse.toggle()">
+
+    <a class="has-arrow"  routerLinkActive="active" aria-expanded="false">
+      <i [class]="menu.icon" *ngIf="menu.icon"></i>
+
+      <span class="nav-text">
+        {{menu.title}}</span>
+    </a>
+    <ul aria-expanded="false" #collapse="ngbCollapse" [ngbCollapse]="false">
+      <li *ngFor="let submenu of menu.subMenu">
+        <a [routerLink]="[submenu.route]" routerLinkActive="active">{{submenu.title}}</a>
+      </li>
+
+    </ul>
+  </li>
+</ng-template> -->
